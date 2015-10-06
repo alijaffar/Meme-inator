@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Meme-inator</title>
+	<style>
+
+	body {
+		font-family: sans-serif;
+		text-align: center;
+	}
+
+	#top-line, #bottom-line {
+		padding: .5em;
+		border: 1px solid #999;
+		font: inherit;
+	}
+
+	#canvas {
+		display: block;
+		margin: 1em auto;
+		cursor: pointer;
+	}
+	
+	input{
+		width:200px;
+		background-color:#FFF;
+		color:#999;
+		font-size:13pt;
+	}
+	
+	.reset {
+	color:red;
+	}
+	</style>
+
+	<!-- Meme script -->
+	<script src="../meme.js"></script>
+
+	<!-- Demo scripts -->
+	<script src="jquery.js"></script>
+	<script>
+
+	$.fn.ready(function() {		
+		// $("#element").val('');
+		// var value = $("#element").val();
+		var img = 'example.jpg';
+		
+		Meme(img, 'canvas') //$line1, $line2
+
+			var $line1 = $('#top-line');		
+			var $line2 = $('#bottom-line');
+			//var $link = '?i='+ img +'&t='+ $($line1).val() + '&b=' + $($line2).val();
+		  
+		$('#top-line, #bottom-line').keyup(function() {
+			Meme(img, 'canvas', $line1.val(), $line2.val());
+				var $link = '?i='+ img +'&t='+ $($line1).val() + '&b=' + $($line2).val();
+				var full='http://ememy.com/'+$link;
+				$("a").attr("href", full);
+				$('#Content').text( $line1.val() );			
+		});
+		
+		$('#top-line, #bottom-line').keyup(function() {
+			Meme(img, 'canvas', $line1.val(), $line2.val());
+				var $link = '?i='+ img +'&t='+ $($line1).val() + '&b=' + $($line2).val();
+				var full='http://ememy.com/'+$link;
+				$("a").attr("href", full);
+				$('#Content').text( $line1.val() );
+		});
+		
+		
+		$(function () {
+			$('canvas').click(function() {
+				Meme(img, 'canvas', $line1.val(), $line2.val());
+			});
+		
+			$('input').keypress(function(e) {
+				if(e.which == 13) {
+					jQuery(this).blur();
+					jQuery('.show').focus().click(); // initialize button to copy link in class="show"
+				}
+			});		
+
+			$('.show').click(function () {
+				var $link = '?i='+ img +'&t='+ $($line1).val() + '&b=' + $($line2).val();
+				var full='http://ememy.com/'+$link;
+				$("a").attr("href", full);
+				$('#Content').text( $line1.val() );
+				
+				window.prompt("Copy link to clipboard: Ctrl+C, Enter", full);
+				// $('button').hide();
+				
+			});
+			  
+		}); 
+		
+	// Reset content area, inputs
+	$(".reset").click(function() {
+		$(this).closest('form').find("input[type=text], textarea").val("");
+		Meme(img, 'canvas', '', '');
+		$('#Content').text( '' ); //$("#Content").val('');
+	});
+
+	// Prevent form submission
+	$( "form" ).submit(function( event ) {
+	  event.preventDefault();
+	});			
+		
+	});
+	</script>
+
+</head>
+
+<body>
+
+	<h1>Make a Meme</h1> 
+<form action="#">
+	<input id="top-line" placeholder="TOP" maxlength="75"> 
+	<input id="bottom-line" placeholder="BOTTOM" maxlength="75">
+
+	<canvas id="canvas" class="show"></canvas>
+
+	<hr>
+	<button type="reset" value="X" class="reset">X</button>
+	<button class="show" id="Add" />Copy a Direct Link Now &raquo;</button>
+	
+	<p>
+	<a href="" id="Content"> </a> 
+	</p>
+
+</form>
+
+</body>
+</html>

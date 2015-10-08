@@ -47,7 +47,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 */
 
-window.Meme = function(image, canvas, top, bottom) {
+window.Meme = function(image, canvas, top, bottom, fontfam) {
 
 	/*
 	Default top and bottom
@@ -55,7 +55,10 @@ window.Meme = function(image, canvas, top, bottom) {
 
 	top = top || '';
 	bottom = bottom || '';
+	fontfam = fontfam || 'Impact';
+	
 
+		
 	/*
 	Deal with the canvas
 	*/
@@ -162,8 +165,9 @@ window.Meme = function(image, canvas, top, bottom) {
 	Do everything else after image loads
 	*/
 
+		
 	image.onload = function() {
-
+		
 		// Set dimensions
 		setCanvasDimensions(this.width, this.height);
 
@@ -171,11 +175,11 @@ window.Meme = function(image, canvas, top, bottom) {
 		context.drawImage(image, 0, 0);
 
 		// Set up text variables
-		context.fillStyle = 'white';
+		context.fillStyle = fontcolor;
 		context.strokeStyle = 'black';
-		context.lineWidth = 2;
+		context.lineWidth = fontstroke;
 		var fontSize = (canvas.height / 8);
-		context.font = fontSize + 'px Impact';
+		context.font = fontSize + 'px ' + fontfam;
 		context.textAlign = 'center';
 
 		// Draw them!

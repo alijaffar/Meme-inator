@@ -2,68 +2,14 @@
 <html>
 <head>
 	<title>Meme-inator</title>
-	<!-- CSS -->
-	<style>
-	body {
-		font-family: sans-serif;
-		text-align: center;
-	}
-
-	#top-line, #bottom-line, select {
-		padding: .5em;
-		border: 1px solid #999;
-		font: inherit;
-	}
-
-	#canvas {
-		display: block;
-		margin: 1em auto;
-		cursor: pointer;
-	}
-	
-	input{
-		width:200px;
-		background-color:#FFF;
-		color:#999;
-		font-size:13pt;
-	}
-	.reset {
-	color:red;
-	}
-
-	@font-face {
-	  font-family: 'Impact';
-	  src: url('fonts/Impact.ttf') format('truetype');
-	}
-	@font-face {
-	  font-family: 'Britannic Bold';
-	  src: url('fonts/Britannic-Bold.ttf') format('truetype');
-	}
-	@font-face {
-	  font-family: 'Broadway';
-	  src: url('fonts/Broadway.ttf') format('truetype');
-	}
-	@font-face {
-	  font-family: 'Gill Sans Ultra Bold';
-	  src: url('fonts/Gill-Sans-Ultra-Bold.ttf') format('truetype');
-	}
-	@font-face {
-	  font-family: 'Keep Calm Medium';
-	  src: url('fonts/Keep-Calm-Medium.ttf') format('truetype');
-	}	
-	</style>
-
 	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-	
 	<script>
 		var fontcolor='white';
 		var fontstroke=2;
 	</script>
-
 	<script src="meme.js"></script>
 	<script src="meme_app.js"></script>
 </head>
-
 <body>
 	<h1>Make a Meme</h1> 
 	<form action="#">
@@ -76,18 +22,13 @@
 		</select>
 		<input id="top-line" placeholder="TOP" maxlength="75"> 
 		<input id="bottom-line" placeholder="BOTTOM" maxlength="75">
-
 		<canvas id="canvas" class="show"></canvas>
-
 		<hr>
-		
 		<button class="show" id="Add" />Copy a Direct Link Now &raquo;</button>
 		<button type="reset" value="X" class="reset">X</button>
-
 		<p>
 			<a href="" id="Content"> </a> 
 		</p>
 	</form>
-
 </body>
 </html>

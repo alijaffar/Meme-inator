@@ -2,14 +2,14 @@
 <html>
 <head>
 	<title>Meme-inator</title>
+	<!-- CSS -->
 	<style>
-
 	body {
 		font-family: sans-serif;
 		text-align: center;
 	}
 
-	#top-line, #bottom-line {
+	#top-line, #bottom-line, select {
 		padding: .5em;
 		border: 1px solid #999;
 		font: inherit;
@@ -27,50 +27,89 @@
 		color:#999;
 		font-size:13pt;
 	}
-	
 	.reset {
 	color:red;
 	}
+
+	@font-face {
+	  font-family: 'Impact';
+	  src: url('fonts/Impact.ttf') format('truetype');
+	}
+	@font-face {
+	  font-family: 'Britannic Bold';
+	  src: url('fonts/Britannic-Bold.ttf') format('truetype');
+	}
+	@font-face {
+	  font-family: 'Broadway';
+	  src: url('fonts/Broadway.ttf') format('truetype');
+	}
+	@font-face {
+	  font-family: 'Gill Sans Ultra Bold';
+	  src: url('fonts/Gill-Sans-Ultra-Bold.ttf') format('truetype');
+	}
+	@font-face {
+	  font-family: 'Keep Calm Medium';
+	  src: url('fonts/Keep-Calm-Medium.ttf') format('truetype');
+	}	
 	</style>
 
-	<!-- Meme script -->
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	
+	<script>
+		var fontcolor='white';
+		var fontstroke=2;
+	</script>
+
 	<script src="meme.js"></script>
 
-	<!-- Demo scripts -->
-	<script src="jquery.js"></script>
-	<script>
-
-	$.fn.ready(function() {		
-		// $("#element").val('');
-		// var value = $("#element").val();
-		var img = 'https://raw.githubusercontent.com/BuddyMeme/Meme.js/master/demo/example.jpg';
+	<script>	
+	$.fn.ready(function() {	
+	
+		var fontfam = fontfam || 'Impact'; // Blank = Impact; use fonts imported in CSS above if you want, too.
+		var img = 'example.jpg';
 		
 		Meme(img, 'canvas') //$line1, $line2
 
 			var $line1 = $('#top-line');		
 			var $line2 = $('#bottom-line');
 			//var $link = '?i='+ img +'&t='+ $($line1).val() + '&b=' + $($line2).val();
-		  
+
+		$('#fontfam').on('change', function() {
+		  var fontfam = $(this).val();
+		  Meme(img, 'canvas', $line1.val(), $line2.val(), fontfam);
+		});	
+			
 		$('#top-line, #bottom-line').keyup(function() {
-			Meme(img, 'canvas', $line1.val(), $line2.val());
-				var $link = '?i='+ img +'&t='+ $($line1).val() + '&b=' + $($line2).val();
-				var full='http://ememy.com/'+$link;
-				$("a").attr("href", full);
-				$('#Content').text( $line1.val() );			
-		});
-		
-		$('#top-line, #bottom-line').keyup(function() {
-			Meme(img, 'canvas', $line1.val(), $line2.val());
+			fontfam = $('#fontfam').val();
+			Meme(img, 'canvas', $line1.val(), $line2.val(), fontfam);
 				var $link = '?i='+ img +'&t='+ $($line1).val() + '&b=' + $($line2).val();
 				var full='http://ememy.com/'+$link;
 				$("a").attr("href", full);
 				$('#Content').text( $line1.val() );
 		});
 		
+		$('#top-line, #bottom-line').keyup(function() {
+			fontfam = $('#fontfam').val();
+			Meme(img, 'canvas', $line1.val(), $line2.val(), fontfam);
+			
+				var $link = '?i='+ img +'&t='+ $($line1).val() + '&b=' + $($line2).val();
+				var full='http://ememy.com/'+$link;
+				$("a").attr("href", full);
+				$('#Content').text( $line1.val() );
+		});
 		
 		$(function () {
+		
+			$('#fontfam').on('change', function() {
+			  var fontfam = $(this).val();
+			  Meme(img, 'canvas', $line1.val(), $line2.val(), fontfam);
+			  Meme(img, 'canvas', $line1.val(), $line2.val(), fontfam);
+			});		
+		
+			
 			$('canvas').click(function() {
-				Meme(img, 'canvas', $line1.val(), $line2.val());
+				fontfam = $('#fontfam').val();
+				Meme(img, 'canvas', $line1.val(), $line2.val(), fontfam);
 			});
 		
 			$('input').keypress(function(e) {
@@ -85,26 +124,23 @@
 				var full='http://ememy.com/'+$link;
 				$("a").attr("href", full);
 				$('#Content').text( $line1.val() );
-				
-				window.prompt("Copy link to clipboard: Ctrl+C, Enter", full);
-				// $('button').hide();
-				
+				window.prompt("Copy link: Ctrl+C, Enter", full);   // $('button').hide();
 			});
-			  
+
 		}); 
 		
-	// Reset content area, inputs
-	$(".reset").click(function() {
-		$(this).closest('form').find("input[type=text], textarea").val("");
-		Meme(img, 'canvas', '', '');
-		$('#Content').text( '' ); //$("#Content").val('');
-	});
+		// Reset content area, inputs
+		$(".reset").click(function() {
+			$(this).closest('form').find("input[type=text], textarea").val("");
+			Meme(img, 'canvas', '', '');
+			$('#Content').text( '' ); //$("#Content").val('');
+		});
 
-	// Prevent form submission
-	$( "form" ).submit(function( event ) {
-	  event.preventDefault();
-	});			
-		
+		// Prevent form submission
+		$( "form" ).submit(function( event ) {
+		  event.preventDefault();
+		});			
+
 	});
 	</script>
 
@@ -113,21 +149,28 @@
 <body>
 
 	<h1>Make a Meme</h1> 
-<form action="#">
-	<input id="top-line" placeholder="TOP" maxlength="75"> 
-	<input id="bottom-line" placeholder="BOTTOM" maxlength="75">
+	<form action="#">
+		<select id="fontfam">
+			<option style="font-family:'Impact';">Impact</option>
+			<option style="font-family:'Britannic Bold';">Britannic Bold</option>
+			<option style="font-family:'Broadway';">Broadway</option>
+			<option style="font-family:'Gill Sans Ultra Bold';">Gill Sans Ultra Bold</option>
+			<option style="font-family:'Keep Calm Medium';">Keep Calm Medium</option>
+		</select>
+		<input id="top-line" placeholder="TOP" maxlength="75"> 
+		<input id="bottom-line" placeholder="BOTTOM" maxlength="75">
 
-	<canvas id="canvas" class="show"></canvas>
+		<canvas id="canvas" class="show"></canvas>
 
-	<hr>
-	<button type="reset" value="X" class="reset">X</button>
-	<button class="show" id="Add" />Copy a Direct Link Now &raquo;</button>
-	
-	<p>
-	<a href="" id="Content"> </a> 
-	</p>
+		<hr>
+		
+		<button class="show" id="Add" />Copy a Direct Link Now &raquo;</button>
+		<button type="reset" value="X" class="reset">X</button>
 
-</form>
+		<p>
+			<a href="" id="Content"> </a> 
+		</p>
+	</form>
 
 </body>
 </html>

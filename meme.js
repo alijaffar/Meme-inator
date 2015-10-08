@@ -55,7 +55,7 @@ window.Meme = function(image, canvas, top, bottom, fontfam) {
 
 	top = top || '';
 	bottom = bottom || '';
-	fontfam = fontfam || 'Impact';
+	fontfam = fontfam || '';
 	
 
 		

@@ -3,7 +3,7 @@
 		text-align: center;
 	}
 
-	#top-line, #bottom-line, select {
+	#top-line, #bottom-line, select, button {
 		padding: .5em;
 		border: 1px solid #999;
 		font: inherit;

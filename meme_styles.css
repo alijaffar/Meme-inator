@@ -3,28 +3,56 @@
 		text-align: center;
 	}
 
-	#top-line, #bottom-line, select, button {
-		padding: .5em;
-		border: 1px solid #999;
-		font: inherit;
-	}
-
+	
 	#canvas {
 		display: block;
 		margin: 1em auto;
 		cursor: pointer;
 	}
-	
-	input{
-		width:200px;
-		background-color:#FFF;
-		color:#999;
-		font-size:13pt;
-	}
-	.reset {
-	color:red;
+	.captions {padding:1em;}
+	.center {text-align:center; }
+	.button-success,
+	.button-error,
+	.button-warning,
+	.button-secondary {
+		color: white;
+		border-radius: 4px;
+		text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 	}
 
+	.button-success {
+		background: rgb(28, 184, 65); /* this is a green */
+	}
+
+	.button-error {
+		background: rgb(202, 60, 60); /* this is a maroon */
+	}
+
+	.button-warning {
+		background: rgb(223, 117, 20); /* this is an orange */
+	}
+
+	.button-secondary {
+		background: rgb(66, 184, 221); /* this is a light blue */
+	}
+
+	
+	.button-xsmall {
+		font-size: 70%;
+	}
+
+	.button-small {
+		font-size: 85%;
+	}
+
+	.button-large {
+		font-size: 110%;
+	}
+
+	.button-xlarge {
+		font-size: 125%;
+	}	
+	
 	@font-face {
 	  font-family: 'Impact';
 	  src: url('fonts/Impact.ttf') format('truetype');

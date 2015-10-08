@@ -61,93 +61,10 @@
 	</script>
 
 	<script src="meme.js"></script>
-
-	<script>	
-	$.fn.ready(function() {	
-	
-		var fontfam = fontfam || 'Impact'; // Blank = Impact; use fonts imported in CSS above if you want, too.
-		var img = 'example.jpg';
-		
-		Meme(img, 'canvas') //$line1, $line2
-
-			var $line1 = $('#top-line');		
-			var $line2 = $('#bottom-line');
-			//var $link = '?i='+ img +'&t='+ $($line1).val() + '&b=' + $($line2).val();
-
-		$('#fontfam').on('change', function() {
-		  var fontfam = $(this).val();
-		  Meme(img, 'canvas', $line1.val(), $line2.val(), fontfam);
-		});	
-			
-		$('#top-line, #bottom-line').keyup(function() {
-			fontfam = $('#fontfam').val();
-			Meme(img, 'canvas', $line1.val(), $line2.val(), fontfam);
-				var $link = '?i='+ img +'&t='+ $($line1).val() + '&b=' + $($line2).val();
-				var full='http://ememy.com/'+$link;
-				$("a").attr("href", full);
-				$('#Content').text( $line1.val() );
-		});
-		
-		$('#top-line, #bottom-line').keyup(function() {
-			fontfam = $('#fontfam').val();
-			Meme(img, 'canvas', $line1.val(), $line2.val(), fontfam);
-			
-				var $link = '?i='+ img +'&t='+ $($line1).val() + '&b=' + $($line2).val();
-				var full='http://ememy.com/'+$link;
-				$("a").attr("href", full);
-				$('#Content').text( $line1.val() );
-		});
-		
-		$(function () {
-		
-			$('#fontfam').on('change', function() {
-			  var fontfam = $(this).val();
-			  Meme(img, 'canvas', $line1.val(), $line2.val(), fontfam);
-			  Meme(img, 'canvas', $line1.val(), $line2.val(), fontfam);
-			});		
-		
-			
-			$('canvas').click(function() {
-				fontfam = $('#fontfam').val();
-				Meme(img, 'canvas', $line1.val(), $line2.val(), fontfam);
-			});
-		
-			$('input').keypress(function(e) {
-				if(e.which == 13) {
-					jQuery(this).blur();
-					jQuery('.show').focus().click(); // initialize button to copy link in class="show"
-				}
-			});		
-
-			$('.show').click(function () {
-				var $link = '?i='+ img +'&t='+ $($line1).val() + '&b=' + $($line2).val();
-				var full='http://ememy.com/'+$link;
-				$("a").attr("href", full);
-				$('#Content').text( $line1.val() );
-				window.prompt("Copy link: Ctrl+C, Enter", full);   // $('button').hide();
-			});
-
-		}); 
-		
-		// Reset content area, inputs
-		$(".reset").click(function() {
-			$(this).closest('form').find("input[type=text], textarea").val("");
-			Meme(img, 'canvas', '', '');
-			$('#Content').text( '' ); //$("#Content").val('');
-		});
-
-		// Prevent form submission
-		$( "form" ).submit(function( event ) {
-		  event.preventDefault();
-		});			
-
-	});
-	</script>
-
+	<script src="meme_app.js"></script>
 </head>
 
 <body>
-
 	<h1>Make a Meme</h1> 
 	<form action="#">
 		<select id="fontfam">

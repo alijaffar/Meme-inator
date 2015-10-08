@@ -1,2 +1,2 @@
 # Meme-inator
-Make memes using JS + jQ. Uses meme.js (by @BuddyMeme)
+Make memes using JS. Uses jQuery and meme.js by @buddymeme.

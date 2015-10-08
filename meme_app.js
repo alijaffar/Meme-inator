@@ -18,13 +18,13 @@
 		};	
 
 		function makelink(){
-			var $link = '?i='+ img +'&t='+ $($line1).val() + '&b=' + $($line2).val();
+			var $link = '?i='+ img +'&t='+ $($line1).val() + '&b=' + $($line2).val() + '&f=' + fontfam;
 			var full='http://ememy.com/'+$link;
 			$("a").attr("href", full);
 			$('#Content').text( $line1.val() );			
 		}
 		function makeprompt(){
-			var $link = '?i='+ img +'&t='+ $($line1).val() + '&b=' + $($line2).val();
+			var $link = '?i='+ img +'&t='+ $($line1).val() + '&b=' + $($line2).val()+ '&f=' + fontfam;
 			var full='http://ememy.com/'+$link;
 			window.prompt("Copy link: Ctrl+C, Enter", full); 
 		}

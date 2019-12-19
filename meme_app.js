@@ -15,17 +15,17 @@
 		function make(){
 			fontfam = $('#fontfam').val();
 			Meme(img, 'canvas', $line1.val(), $line2.val(), fontfam);
-		};	
+		};
 
 		function makelink(){
 			var $link = '?i='+ img +'&t='+ $($line1).val() + '&b=' + $($line2).val() + '&f=' + fontfam;
-			var full='http://ememy.com/'+$link;
+			var full=$link;
 			$("a").attr("href", full);
 			$('#Content').text( $line1.val() );			
 		}
 		function makeprompt(){
 			var $link = '?i='+ img +'&t='+ $($line1).val() + '&b=' + $($line2).val()+ '&f=' + fontfam;
-			var full='http://ememy.com/'+$link;
+			var full=$link;
 			window.prompt("Copy link: Ctrl+C, Enter", full); 
 		}
 			

@@ -3,14 +3,18 @@
 <head>
 	<title>Meme-inator</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-<!--[if lte IE 8]>
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
-<![endif]-->
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+    <!--<![endif]-->
+    
 	<link href="meme_styles.css" type="text/css" rel="stylesheet" />
-	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
 	<script>
 		var fontcolor='white';
 		var fontstroke=2;
@@ -27,7 +31,7 @@ error_reporting(0);
 $img = $_POST['saveinput'];
 if ($img){ 
 	$img = substr(explode(";",$img)[1], 7);
-	$imgfile='img.png';
+	$imgfile='example.jpg';
 	file_put_contents($imgfile, base64_decode($img));
 	echo 'OK! <br> <a href="'.$imgfile.'"><img src="'.$imgfile.'"></a>';
 }
@@ -45,7 +49,7 @@ if ($img){
 					 <select id="img" name="img" class="pure-u-23-24">
 						<option value="meme.png">Super Doggy</option>
 						<option value="blank.png">Blank</option>
-					</select>	
+					</select>
 				</p>
 				<p>
 					<label for="fontf">Font</label>
